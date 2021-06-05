@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+$backgroundColor: #E7E6DA;
+$lightGray: #C2C2C2;
+$darkGray: #ADADAD;
+$seaGreen: #058A5E;
+$carnelianRed: #AA0E13;
+
+@mixin flex($dir: row, $jc: center, $ai: center) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 0.85rem;
+    outline: none;
+    transition: all 0.5s;
+    border: 1px solid transparent;
+}
+
+.button:hover {
+    background-color: transparent;
+    cursor: pointer;
+    box-shadow: 5px 3px 10px lightgrey;
+}
+
+.input {
+    border: none;
+    border-radius: 0.75rem;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    margin: 0.5rem 0.25rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-size: 0.85rem;
+}
+
+.app {
+    min-height: 100vh;
+    @include flex(row, center, stretch);
+}
+
+.sidebar {
+    flex: 0.4;
+    background-color: $backgroundColor;
+    padding: 0.25rem;
+    @include flex(column, flex-start);
+
+    &-header {
+        width: 100%;
+        @include flex(column);
+
+        &-title {
+            margin: 0.5rem;
+            font-size: 2.25rem;
+        }
+
+        &-add-button {
+            @extend .button;
+            margin: 0.25rem 0 0.75rem 0;
+            background-color: #058A5E;
+            color: white;
+        }
+
+        &-add-button:hover {
+            border: 1px solid $seaGreen;
+            color: $seaGreen;
+        }
+
+        &-search {
+            margin-bottom: 0.75rem;
+
+            &-input {
+                @extend .input;
+            }
+        }
+    }
+
+    &-notes {
+        @include flex(column);
+        width: 100%;
+
+        .sidebar-note {
+            @include flex(column, center, flex-start);
+            width: 80%;
+            background-color: $lightGray;
+            margin: 0.25rem 0.5rem 0.5rem 0.5rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            transition: all 0.5s;
+            box-shadow: 5px 5px 5px lightgrey;
+
+            &-delete-button {
+                @extend .button;
+                margin: 0;
+                align-self: stretch;
+                padding: 0;
+                background-color: $carnelianRed;
+                color: white;
+            }
+
+            &-delete-button:hover {
+                border: 1px solid $carnelianRed;
+                color: $carnelianRed;
+            }
+
+            > * {
+                margin: 0.25rem 0.5rem;
+            }
+        }
+
+        .sidebar-note:hover {
+            cursor: pointer;
+            box-shadow: 10px 10px 10px lightgrey;
+            background-color: #ADADAD;
+        }
+
+        .sidebar-note-focus {
+            background-color: #ADADAD;
+            box-shadow: 10px 10px 10px lightgrey;
+        }
+
+        .sidebar-notes-empty {
+            margin: 2rem;
+            text-decoration: underline;
+        }
+    }
+}
+
+.note {
+    flex: 1;
+    @include flex(column, stretch, stretch);
+    padding-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+
+    &-header {
+        @include flex(row, space-between);
+
+        &-title {
+            text-align: center;
+            margin: 1rem;
+        }
+
+        &-save-button {
+            @extend .button;
+            background-color: $seaGreen;
+            color: white;
+            margin: 1rem;
+        }
+
+        &-save-button:hover {
+            border: 1px solid $seaGreen;
+            color: $seaGreen;
+        }
+    }
+
+    &-edit {
+        height: 100%;
+        @include flex(column, stretch, stretch);
+
+        &-title {
+            @extend .input;
+            font-weight: bold;
+        }
+
+        &-text {
+            height: 100%;
+            @extend .input;
+            font-size: 0.85rem;
+        }
+    }
+}
+
