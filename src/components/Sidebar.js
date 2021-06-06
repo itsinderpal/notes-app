@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { NotesContext } from "../contexts/NotesContext";
 import Search from "./Search";
 
-const Sidebar = () => {
+const Sidebar = ({isMenuOpen, setIsMenuOpen, className}) => {
 	const { state, dispatch } = useContext(NotesContext);
 
-	const {note, notes, queryNotes, isSearching} = state;
+	const {notes, queryNotes, isSearching} = state;
 
 	const renderNotes = isSearching ? queryNotes : notes;
 
 	return (
-		<div className="sidebar">
+		<div className={`sidebar ${isMenuOpen && className}`}>
 			<div className="sidebar-header">
 				<h1 className="sidebar-header-title">Notes</h1>
 				<button
@@ -29,7 +29,10 @@ const Sidebar = () => {
 						<div
 							key={id}
 							className={`sidebar-note ${isSelected ? "sidebar-note-focus" : ""}`}
-							onClick={() => dispatch({ type: "readNote", payload: id })}
+							onClick={(e) => {
+								(isMenuOpen && e.target.nodeName !== "BUTTON" && setIsMenuOpen(!isMenuOpen));
+								dispatch({ type: "readNote", payload: id })
+							}}
 						>
 							<h3 className="sidebar-note-heading">
 								{title.length > 50 ? title.slice(0, 50) + "..." : title}

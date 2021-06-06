@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NotesContext } from "../contexts/NotesContext";
 
 const Search = () => {
-	const { state, dispatch } = useContext(NotesContext);
+	const { dispatch } = useContext(NotesContext);
 	return (
 		<div className="sidebar-header-search">
 			<input
@@ -11,6 +11,7 @@ const Search = () => {
 				className="sidebar-header-search-input"
 				placeholder="Search Note..."
 				onChange={(e) => dispatch({ type: "searchNote", payload: e })}
+				autoComplete="off"
 			/>
 		</div>
 	);

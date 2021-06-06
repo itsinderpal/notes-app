@@ -1,7 +1,7 @@
 import React from "react";
 import Note from "./components/Note";
 import Sidebar from "./components/Sidebar";
-import "./styles/main.css"
+import "./styles/style.css"
 import NotesProvider from "./contexts/NotesContext";
 
 const App = () => {
