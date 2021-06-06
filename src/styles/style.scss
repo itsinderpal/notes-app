@@ -216,6 +216,15 @@ body {
 @media (max-width: 768px) {
     .sidebar {
         display: none;
+
+        &-header {
+            &-search {
+                text-align: center;
+                &-input {
+                    width: 80%;
+                }
+            }
+        }
     }
 
     .note {
@@ -250,8 +259,30 @@ body {
         left: 0;
         z-index: 10;
         width: 50%;
-        min-height: calc(100% - 4rem);
+        min-height: calc(100vh - 4rem);
         height: auto;
         @include flex(column, flex-start);
+    }
+}
+
+@media (max-width: 325px) {
+    body {
+        font-size: 0.75rem;
+    }
+
+    .sidebar {
+        &-header {
+            &-title {
+                font-size: 1.75rem;
+            }
+        }
+    }
+
+    .note {
+        &-header {
+            &-title {
+                font-size: 0.875rem;
+            }
+        }
     }
 }
